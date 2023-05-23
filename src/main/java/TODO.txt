@@ -1,0 +1,4 @@
+ideas to implement:
+
+Categories -> Show them in the header, select one and return the products of that type.
+

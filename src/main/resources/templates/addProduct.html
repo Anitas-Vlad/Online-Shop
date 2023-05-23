@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Product</title>
+    <link rel="stylesheet" href="vendors/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="vendors/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="vendors/themify-icons/themify-icons.css">
+    <link rel="stylesheet" href="vendors/linericon/style.css">
+    <link rel="stylesheet" href="vendors/owl-carousel/owl.theme.default.min.css">
+    <link rel="stylesheet" href="vendors/owl-carousel/owl.carousel.min.css">
+    <link rel="stylesheet" href="vendors/nice-select/nice-select.css">
+    <link rel="stylesheet" href="vendors/nouislider/nouislider.min.css">
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div th:insert="fragments/header :: header"></div>
+<!--================Login Box Area =================-->
+<section class="login_box_area section-margin">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-lg-12">
+                <div class="login_form_inner register_form_inner">
+                    <h3>Add a new product</h3>
+                    <p th:text="${addProductMessage}"></pth>
+                    <form th:object="${productDto}" class="row login_form" action="/addProduct" method="post"
+                          id="register_form"
+                          enctype="multipart/form-data">
+                        <div class="col-md-12 form-group">
+                            <input th:field="*{name}" type="text" class="form-control" id="name" name="name"
+                                   placeholder="Product Name"
+                                   onfocus="this.placeholder = ''" onblur="this.placeholder = 'Product Name'">
+                            <label th:errors="*{name}"></label>
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <input th:field="*{price}" type="number" class="form-control" id="price" name="price"
+                                   placeholder="Price"
+                                   onfocus="this.placeholder = ''" onblur="this.placeholder = 'Price'">
+                            <label th:errors="*{price}"></label>
+                        </div>
+                        <div class="mb-3">
+                            <select name="category" id="category" class="form-control">
+                                <option th:each="categoryOpt : ${T(com.example.demo.model.enums.Category).values()}"
+                                        th:value="${categoryOpt}" th:text="${categoryOpt}"></option>
+                            </select>
+                            <label th:errors="*{category}"></label>
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <textarea th:field="*{description}" class="form-control" id="productDescription"
+                                      name="productDescription"
+                                      placeholder="Product Description" onfocus="this.placeholder = ''"
+                                      onblur="this.placeholder = 'Product Description'"></textarea>
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <input type="file" class="form-control" id="productImage" name="productImage"
+                                   accept="image/*">
+                            <label th:errors="*{image}"></label>
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <input th:field="*{quantity}" type="number" class="form-control" id="quantity"
+                                   name="quantity" placeholder="Quantity"
+                                   onfocus="this.placeholder = ''" onblur="this.placeholder = 'Quantity'">
+                            <label th:errors="*{quantity}"></label>
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <button type="submit" value="submit" class="button button-register w-100">Add</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--================End Login Box Area =================-->
+</body>
+</html>

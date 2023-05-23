@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Orders</title>
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" href="/vendors/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="vendors/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="vendors/themify-icons/themify-icons.css">
+    <link rel="stylesheet" href="vendors/linericon/style.css">
+    <link rel="stylesheet" href="vendors/owl-carousel/owl.theme.default.min.css">
+    <link rel="stylesheet" href="vendors/owl-carousel/owl.carousel.min.css">
+    <link rel="stylesheet" href="vendors/nice-select/nice-select.css">
+    <link rel="stylesheet" href="vendors/nouislider/nouislider.min.css">
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div th:insert="fragments/header :: header"></div>
+
+<div class="container">
+    <div class="order_details_table" th:each="order:${orders}">
+        <h2>Order Details</h2>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Product</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Total</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="product:${order.productDtos}">
+                    <td>
+                        <p th:text="${product.name}"></p>
+                    </td>
+                    <td>
+                        <h5>x 01</h5>
+                    </td>
+                    <td>
+                        <p th:text="${product.price}"></p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <h4>Date and Time</h4>
+                    </td>
+                    <td>
+                        <h5></h5>
+                    </td>
+                    <td>
+                        <p th:text="${order.time}"></p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <h4>Status</h4>
+                    </td>
+                    <td>
+                        <h5></h5>
+                    </td>
+                    <td>
+                        <p th:text="${order.status}"></p>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
